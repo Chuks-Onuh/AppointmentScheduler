@@ -1,4 +1,4 @@
-﻿@inject Microsoft.AspNetCore.Identity.SignInManager<Microsoft.AspNetCore.Identity.IdentityUser> signInManager
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<AppointmentScheduler.Models.AppUser> signInManager
 
 @if (signInManager.IsSignedIn(User))
 {
@@ -7,7 +7,11 @@
 else 
 {
     <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink"})</li>
-        <li>@Html.ActionLink("Sign In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "LoginLink"})</li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="registerLink" asp-action="Register" asp-controller="Account">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="loginLink" asp-action="Login" asp-controller="Account">Login</a>
+        </li>
     </ul>
 }
