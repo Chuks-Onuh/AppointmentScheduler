@@ -5,7 +5,7 @@ namespace AppointmentScheduler.ViewModels
     public class RegisterVm
     {
         [Required]
-        public string FirstName { get; set; }
+        public string Name { get; set; }
         [EmailAddress]
         [Required]
         public string Email { get; set; }
@@ -21,7 +21,7 @@ namespace AppointmentScheduler.ViewModels
 
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Role Name")]
+        [Display(Name = "Register As")]
         public string RoleName { get; set; }
     }
 }
