@@ -7,3 +7,4 @@ namespace AppointmentScheduler.Models
         public string Name { get; set; }
     }
 }
+
