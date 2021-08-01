@@ -1,11 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AppointmentScheduler.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AppointmentScheduler.Controllers
 {
     public class AppointmentController : Controller
     {
+        private readonly IAppointmentServices _appointmentservice;
+
+        public AppointmentController(IAppointmentServices appointmentServices)
+        {
+            _appointmentservice = appointmentServices;
+        }
         public IActionResult Index()
         {
+            _appointmentservice.GetDoctorList();
             return View();
         }
     }
