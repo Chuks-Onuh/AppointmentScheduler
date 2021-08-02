@@ -13,7 +13,7 @@ namespace AppointmentScheduler.Controllers
         }
         public IActionResult Index()
         {
-            _appointmentservice.GetDoctorList();
+            ViewBag.Doctor = _appointmentservice.GetDoctorList();
             return View();
         }
     }
