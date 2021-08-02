@@ -1,9 +1,12 @@
 ﻿using AppointmentScheduler.Data;
+using AppointmentScheduler.Models;
 using AppointmentScheduler.Utility;
 using AppointmentScheduler.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AppointmentScheduler.Services
 {
@@ -17,6 +20,38 @@ namespace AppointmentScheduler.Services
             _ctx = context;
             _userrole = userRole;
 
+        }
+
+        public async Task<int> AddUpdate(AppointmentVm model)
+        {
+            var startDate = DateTime.Parse(model.StartDate);
+            var endDate = DateTime.Parse(model.EndDate).AddMinutes(Convert.ToDouble(model.Duration));
+
+            if (model == null && model.Id > 0)
+            {
+                // update
+                return 1;
+            }
+            else
+            {
+                // create
+                Appointment appointment = new Appointment()
+                {
+                    Title = model.Title,
+                    Description = model.Description,
+                    StartDate = startDate,
+                    EndDate = endDate,
+                    Duration = model.Duration,
+                    DoctorId = model.DoctorId,
+                    PatientId = model.PatientId,
+                    IsDoctorApproved = false,
+                    AdminId = model.AdminId
+                };
+
+                _ctx.Appointments.Add(appointment);
+                await _ctx.SaveChangesAsync();
+                return 2;
+            }
         }
 
         public List<DoctorVm> GetDoctorList()

@@ -1,5 +1,6 @@
 ﻿using AppointmentScheduler.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AppointmentScheduler.Services
 {
@@ -7,5 +8,6 @@ namespace AppointmentScheduler.Services
     {
         public List<DoctorVm> GetDoctorList();
         public List<PatientVm> GetPatientList();
+        public Task<int> AddUpdate(AppointmentVm model);
     }
 }
