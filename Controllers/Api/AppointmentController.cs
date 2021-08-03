@@ -4,6 +4,7 @@ using AppointmentScheduler.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace AppointmentScheduler.Controllers.Api
@@ -50,6 +51,38 @@ namespace AppointmentScheduler.Controllers.Api
                 commonResponse.status = Helper.failure_code;
             }
 
+            return Ok(commonResponse);
+        }
+
+        [HttpGet]
+        [Route("GetCalenderData")]
+        public IActionResult GetCalenderData(string doctorId)
+        {
+            CommonResponse<List<AppointmentVm>> commonResponse = new CommonResponse<List<AppointmentVm>>();
+            try
+            {
+                if (role == Helper.Patient)
+                {
+                    commonResponse.dateenum = _appointmentservice.PatientsEventsById(loginUserId);
+                    commonResponse.status = Helper.success_code;
+                }
+                else if (role == Helper.Doctor)
+                {
+                    commonResponse.dateenum = _appointmentservice.DoctorsEventsById(loginUserId);
+                    commonResponse.status = Helper.success_code;
+                }
+                else
+                {
+                    commonResponse.dateenum = _appointmentservice.DoctorsEventsById(doctorId);
+                    commonResponse.status = Helper.success_code;
+                }
+            }
+            catch (Exception e)
+            {
+
+                commonResponse.message = e.Message;
+                commonResponse.status = Helper.failure_code;
+            }
             return Ok(commonResponse);
         }
     }
