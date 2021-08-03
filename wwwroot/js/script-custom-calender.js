@@ -29,7 +29,7 @@ function InitializeCalendar() {
                 eventDisplay: 'block',
                 events: function (fetchInfo, successCallback, failureCallback) {
                     $.ajax({
-                        url: routeURL + '/api/Appointment/GetCalendarData?doctorId=' + $("#doctorId").val(),
+                        url: routeURL + '/api/Appointment/GetCalenderData?doctorId=' + $("#doctorId").val(),
                         type: 'GET',
                         dataType: 'JSON',
                         success: function (response) {
@@ -126,7 +126,7 @@ function onSubmitForm() {
         };
 
         $.ajax({
-            url: routeURL + '/api/Appointment/SaveCalendarData',
+            url: routeURL + '/api/Appointment/SaveCalenderData',
             type: 'POST',
             data: JSON.stringify(requestData),
             contentType: 'application/json',

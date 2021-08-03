@@ -3,6 +3,7 @@ using AppointmentScheduler.Models;
 using AppointmentScheduler.Utility;
 using AppointmentScheduler.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,16 +26,28 @@ namespace AppointmentScheduler.Services
         public async Task<int> AddUpdate(AppointmentVm model)
         {
             var startDate = DateTime.Parse(model.StartDate);
-            var endDate = DateTime.Parse(model.EndDate).AddMinutes(Convert.ToDouble(model.Duration));
-
-            if (model == null && model.Id > 0)
+            var endDate = DateTime.Parse(model.StartDate).AddMinutes(Convert.ToDouble(model.Duration));
+            var patient = _ctx.Users.FirstOrDefault(u => u.Id == model.PatientId);
+            var doctor = _ctx.Users.FirstOrDefault(u => u.Id == model.DoctorId);
+            if (model != null && model.Id > 0)
             {
-                // update
+                //update
+                var appointment = await _ctx.Appointments.FirstOrDefaultAsync(x => x.Id == model.Id);
+                appointment.Title = model.Title;
+                appointment.Description = model.Description;
+                appointment.StartDate = startDate;
+                appointment.EndDate = endDate;
+                appointment.Duration = model.Duration;
+                appointment.DoctorId = model.DoctorId;
+                appointment.PatientId = model.PatientId;
+                appointment.IsDoctorApproved = false;
+                appointment.AdminId = model.AdminId;
+                await _ctx.SaveChangesAsync();
                 return 1;
             }
             else
             {
-                // create
+                //create
                 Appointment appointment = new Appointment()
                 {
                     Title = model.Title,
@@ -52,6 +65,7 @@ namespace AppointmentScheduler.Services
                 await _ctx.SaveChangesAsync();
                 return 2;
             }
+
         }
 
         public List<AppointmentVm> DoctorsEventsById(string doctorId)

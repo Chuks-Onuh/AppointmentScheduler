@@ -29,8 +29,8 @@ namespace AppointmentScheduler.Controllers.Api
         }
 
         [HttpPost]
-        [Route("SaveCalendarData")]
-        public IActionResult SaveCalendarData(AppointmentVm data)
+        [Route("SaveCalenderData")]
+        public IActionResult SaveCalendrrData(AppointmentVm data)
         {
             CommonResponse<int> commonResponse = new CommonResponse<int>();
             try
@@ -45,6 +45,7 @@ namespace AppointmentScheduler.Controllers.Api
                     commonResponse.message = Helper.appointmentAdded;
                 }
             }
+
             catch (Exception e)
             {
                 commonResponse.message = e.Message;
@@ -56,7 +57,7 @@ namespace AppointmentScheduler.Controllers.Api
 
         [HttpGet]
         [Route("GetCalenderData")]
-        public IActionResult GetCalenderData(string doctorId)
+        public IActionResult GetCalendarData(string doctorId)
         {
             CommonResponse<List<AppointmentVm>> commonResponse = new CommonResponse<List<AppointmentVm>>();
             try
@@ -79,7 +80,6 @@ namespace AppointmentScheduler.Controllers.Api
             }
             catch (Exception e)
             {
-
                 commonResponse.message = e.Message;
                 commonResponse.status = Helper.failure_code;
             }
