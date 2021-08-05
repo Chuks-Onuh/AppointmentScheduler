@@ -1,12 +1,8 @@
 ﻿using AppointmentScheduling.Models;
 using AppointmentScheduling.Models.ViewModels;
 using AppointmentScheduling.Utility;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppointmentScheduling.Controllers
@@ -42,16 +38,16 @@ namespace AppointmentScheduling.Controllers
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.Email);
-                    HttpContext.Session.SetString("ssuserName", user.Name);
+                    //HttpContext.Session.SetString("ssuserName", user.Name);
                     //var userName = HttpContext.Session.GetString("ssuserName");
-                    return RedirectToAction("Index", "Appointment");
+                    return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Invalid login attempt");
             }
             return View(model);
         }
 
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
 
             return View();
@@ -82,7 +78,7 @@ namespace AppointmentScheduling.Controllers
                     {
                         TempData["newAdminSignUp"] = user.Name;
                     }
-                    return RedirectToAction("Index", "Appointment");
+                    return RedirectToAction("Index", "Home");
                 }
                 foreach (var error in result.Errors)
                 {

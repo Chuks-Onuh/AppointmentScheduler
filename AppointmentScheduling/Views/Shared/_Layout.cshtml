@@ -16,12 +16,24 @@
     <header>
         <nav class="navbar navbar-inverse navbar-expand-sm navbar-toggleable-sm navbar box-shadow mb-3">
             <div class="container">
-
+                <div class="logo-div">
+                    <a asp-action="index" asp-controller="home">
+                        <img src="~/img/logo.jpg" alt="logo" />
+                    </a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
 
                 </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item dropdown dropdown-element">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        
+                    </ul>
+                </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                 </div>
@@ -35,9 +47,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - AppointmentScheduling - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+       
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

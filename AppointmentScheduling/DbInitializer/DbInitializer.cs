@@ -3,9 +3,7 @@ using AppointmentScheduling.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AppointmentScheduling.DbInitializer
 {
@@ -50,9 +48,9 @@ namespace AppointmentScheduling.DbInitializer
                 UserName = "admin@gmail.com",
                 Email = "admin@gmail.com",
                 EmailConfirmed = true,
-                Name = "Admin Spark"
+                Name = "Onuh Chuks"
 
-            }, "Admin123*").GetAwaiter().GetResult();
+            }, "Admin123@").GetAwaiter().GetResult();
 
             ApplicationUser user = _db.Users.FirstOrDefault(u => u.Email == "admin@gmail.com");
             _userManager.AddToRoleAsync(user, Helper.Admin).GetAwaiter().GetResult();

@@ -2,9 +2,6 @@
 using Mailjet.Client.Resources;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppointmentScheduling.Utility
@@ -21,7 +18,7 @@ namespace AppointmentScheduling.Utility
             {
                 Resource = Send.Resource,
             }
-           .Property(Send.FromEmail, "ben.spark90@gmail.com")
+           .Property(Send.FromEmail, "onuhchukwuma21@gmail.com")
            .Property(Send.FromName, "Appointment Scheduler")
            .Property(Send.Subject, subject)
            .Property(Send.HtmlPart, htmlMessage)

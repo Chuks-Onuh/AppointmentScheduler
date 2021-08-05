@@ -161,3 +161,93 @@ body {
 .radio-container input:checked ~ .checkmark:after {
     display: block;
 }
+
+/* Home page */
+
+.calender-container {
+    display: flex;
+    position: relative;
+    margin-left: 550px;
+    width: 550px;
+    height: 400px;
+    top: -500px;
+}
+
+h1 {
+    margin-left: 565px;
+}
+
+p {
+    margin-left: 565px;
+}
+
+.index-img {
+    width: 500px;
+    height: 500px;
+}
+
+
+/*------Responsiveness------*/
+@media screen and (max-width: 768px) {
+    .calender-container {
+        display: flex;
+        position: relative;
+        margin-left: 50px;
+        width: 100px;
+        height: 100px;
+    }
+
+    h1 {
+        text-align: justify;
+        
+    }
+
+    p {
+        text-align:justify;
+    }
+
+    .index-img {
+        width: 200px;
+        height: 200px;
+    }
+
+    #calendar {
+        display: flex;
+        position: relative;
+    }
+
+}
+
+@media screen and (min-width: 300px) and (max-width: 480px) {
+    .calender-container {
+        display: flex;
+        position: relative;
+        margin-left: 50px;
+        width: 100px;
+        height: 100px;
+    }
+
+    h1 {
+        
+        font-size: 15px;
+        margin-left: 5px;
+        color: gray;
+    }
+
+    p {
+        display: none;
+    }
+
+    .index-img {
+        display: flex;
+        position: absolute;
+        width: 200px;
+    }
+
+    #calendar {
+        
+    }
+}
+
+
+
